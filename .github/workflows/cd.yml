@@ -2,8 +2,6 @@ name: continous deployment
 on: 
   workflow_run:
 <<<<<<< HEAD
-    workflow: ["Continous Integration"]
-=======
     workflows: ["Continous Integration"]
 >>>>>>> 921b79ac9983be2ee0fac660447aa11b01bac2ca
     types: completed

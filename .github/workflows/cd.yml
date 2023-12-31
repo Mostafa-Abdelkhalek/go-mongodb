@@ -1,0 +1,26 @@
+name: continous deployment 
+on: 
+  workflow_run:
+    workflow: ["Continous Integration"]
+    types: completed
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: checkout the code
+        uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+      - name: install kubectl 
+        uses: azure/setup-kubectl@v3
+        with:
+          version: latest
+      - name: verify kubectl 
+        run: |
+          kubectl version --client 

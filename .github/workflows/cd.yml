@@ -1,7 +1,11 @@
 name: continous deployment 
 on: 
   workflow_run:
+<<<<<<< HEAD
     workflow: ["Continous Integration"]
+=======
+    workflows: ["Continous Integration"]
+>>>>>>> 921b79ac9983be2ee0fac660447aa11b01bac2ca
     types: completed
 
 jobs: 
@@ -23,4 +27,8 @@ jobs:
           version: latest
       - name: verify kubectl 
         run: |
+<<<<<<< HEAD
           kubectl version --client 
+=======
+          kubectl version --client 
+>>>>>>> 921b79ac9983be2ee0fac660447aa11b01bac2ca

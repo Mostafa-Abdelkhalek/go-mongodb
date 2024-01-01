@@ -28,31 +28,13 @@ kind: Service
 metadata:
   name: go-app-svc
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: go-app  # Adjusted to match the labels in the deployment
   ports:
     - name: go-app
       port: 8080
       targetPort: 8080
---- 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: go-app-ingress
-  ingressClassName: 
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-spec:
-  rules:
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: go-app-svc 
-                port:
-                  number: 8080
+
 
 

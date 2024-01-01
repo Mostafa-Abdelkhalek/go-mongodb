@@ -28,4 +28,5 @@ jobs:
         run: |
           export KUBECONFIG=kubecofig
           kubectl apply -f k8s/ 
+          kubectl get svc 
 

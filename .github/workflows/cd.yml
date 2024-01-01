@@ -1,6 +1,5 @@
 name: kubernetes deployment 
 on: 
-  push:
   pull_request:
 jobs: 
   deploy:
@@ -28,5 +27,6 @@ jobs:
         run: |
           export KUBECONFIG=kubecofig
           kubectl apply -f k8s/ 
+          sleep 60s
           kubectl get svc 
 

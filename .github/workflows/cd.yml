@@ -21,4 +21,11 @@ jobs:
       - name: verify kubectl 
         run: |
           kubectl version --client 
+      - name: update kubecofig 
+        run: |
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > kubecofig
+      - name: apply kubenetes mainfest files
+        run: |
+          export KUBECONFIG=kubecofig
+          kubectl apply -f k8s/ 
 

@@ -30,7 +30,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: go-app  # Adjusted to match the labels in the deployment
+    app: go-app  
   ports:
     - name: go-app
       port: 8080

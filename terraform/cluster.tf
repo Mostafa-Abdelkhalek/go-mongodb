@@ -6,8 +6,6 @@ resource "aws_eks_cluster" "demo" {
     subnet_ids = [aws_subnet.private.id,aws_subnet.public.id]
   }
 
-  # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
-  # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
   depends_on = [
     aws_iam_role_policy_attachment.role1-policy-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.role2-policy-AmazonEKSVPCResourceController,
@@ -40,8 +38,7 @@ resource "aws_eks_node_group" "demo-node" {
     max_unavailable = 1
   }
 
-  # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
-  # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
+
   depends_on = [
     aws_iam_role_policy_attachment.role3-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.role4-AmazonEKS_CNI_Policy,
